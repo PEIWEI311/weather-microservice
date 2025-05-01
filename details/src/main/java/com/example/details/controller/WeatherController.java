@@ -7,11 +7,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 @RefreshScope
 @RestController
@@ -32,14 +29,10 @@ public class WeatherController {
         return new ResponseEntity<>(weatherService.findCityIdByName(city), HttpStatus.OK);
     }
 
-
-//    @GetMapping("/details/{id}")
-//    public ResponseEntity<?> queryWeatherByCity(@PathVariable int id) {
-//        return new ResponseEntity<Map>(weatherService.findCityNameById(id), HttpStatus.OK);
-//    }
-
-    @GetMapping("/details/port")
-    public ResponseEntity<?> queryWeatherByCity() {
+    
+    
+    @GetMapping("/port")
+    public ResponseEntity<?> getPortDirectly() {
         return new ResponseEntity<>("weather service + " + randomServerPort, HttpStatus.OK);
     }
 }

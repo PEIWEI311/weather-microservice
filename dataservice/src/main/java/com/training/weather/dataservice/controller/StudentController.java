@@ -6,14 +6,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
+@RequestMapping("/student")
 @RequiredArgsConstructor
 public class StudentController {
     
     private final StudentService studentService;
+    private final RestTemplate restTemplate = new RestTemplate();
     
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
