@@ -27,7 +27,7 @@ homework
 2. search service ->
         configure ribbon with rest template (@LoadBalanced)
         completable future
-            call book/author service
+            call book/author service（or other dataservice）
             call details (/details/port)
             restTemplate.getForObject("http://details/port",  ..);
         merge result -> return "general response(code, timestamp, data)" to user

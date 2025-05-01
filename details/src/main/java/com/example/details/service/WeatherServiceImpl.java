@@ -1,9 +1,8 @@
 package com.example.details.service;
 
-
-
 import com.example.details.config.EndpointConfig;
 import com.example.details.pojo.City;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,9 +17,8 @@ public class WeatherServiceImpl implements WeatherService{
 
     private final RestTemplate restTemplate;
 
-
-    public WeatherServiceImpl(RestTemplate getRestTemplate) {
-        this.restTemplate = getRestTemplate;
+    public WeatherServiceImpl(@Qualifier("detailsRestTemplate") RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     @Override

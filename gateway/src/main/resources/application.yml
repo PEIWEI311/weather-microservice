@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        # ... existing routes ...
+        - id: studentdemo
+          uri: lb://studentdemo
+          predicates:
+            - Path=/api/students/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: studentService
+                fallbackUri: forward:/fallback

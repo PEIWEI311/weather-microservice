@@ -1,7 +1,6 @@
 package com.example.common.response;
 
 import com.example.common.domain.GeneralResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.util.Date;
 
 @RestControllerAdvice
-public class GeneralResponseAdvice implements ResponseBodyAdvice {
+public class GeneralResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
@@ -21,6 +20,10 @@ public class GeneralResponseAdvice implements ResponseBodyAdvice {
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+        if (o instanceof GeneralResponse) {
+            return o;
+        }
+        
         GeneralResponse response = new GeneralResponse();
         response.setCode(0);
         response.setData(o);
