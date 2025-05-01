@@ -1,14 +1,14 @@
 spring:
+  application:
+    name: gateway
+  profiles:
+    active: dev
   cloud:
-    gateway:
-      routes:
-        # ... existing routes ...
-        - id: studentdemo
-          uri: lb://studentdemo
-          predicates:
-            - Path=/api/students/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: studentService
-                fallbackUri: forward:/fallback
+    config:
+      uri: http://localhost:8100
+      fail-fast: true
+      retry:
+        initial-interval: 1000
+        max-attempts: 6
+        max-interval: 2000
+        multiplier: 1.1
