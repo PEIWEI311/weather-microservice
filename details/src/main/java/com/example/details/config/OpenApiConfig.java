@@ -15,8 +15,6 @@ import java.util.Arrays;
 @Configuration
 public class OpenApiConfig {
 
-    
-
     @Bean
     public OpenAPI weatherDetailsOpenAPI() {
         return new OpenAPI()
@@ -24,6 +22,7 @@ public class OpenApiConfig {
                         .description("Weather details microservice")
                         .version("v1.0.0"))       
                 .servers(Arrays.asList(
+                        new Server().url("/").description("Default server"),
                         new Server().url("http://localhost:8200/details").description("Gateway server")
                 ));
     }
