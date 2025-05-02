@@ -41,7 +41,7 @@ public class SearchController {
         @ApiResponse(responseCode = "503", description = "Service unavailable", 
                    content = @Content(schema = @Schema(implementation = GeneralResponse.class)))
     })
-    @GetMapping("/search/combined")
+    @GetMapping("/combined")
     @HystrixCommand(fallbackMethod = "searchCombinedFallback",
             commandProperties = {
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000"),
