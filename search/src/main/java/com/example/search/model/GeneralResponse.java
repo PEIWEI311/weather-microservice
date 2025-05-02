@@ -1,15 +1,23 @@
 package com.example.search.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Schema(description = "Standard response wrapper for all API responses")
 public class GeneralResponse<T> {
+
+    @Schema(description = "HTTP status code", example = "200")
     private int code;
-    private String timestamp;
+    
+    @Schema(description = "Timestamp of the response", example = "2025-05-01T10:30:45")
+    private LocalDateTime timestamp;
+    
+    @Schema(description = "Response data")
     private T data;
 
     public GeneralResponse() {
-        this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        this.timestamp = LocalDateTime.now();
     }
 
     public GeneralResponse(int code, T data) {
@@ -27,11 +35,11 @@ public class GeneralResponse<T> {
         this.code = code;
     }
 
-    public String getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -1,7 +1,14 @@
 package com.example.search.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Combined result containing data from multiple services")
 public class CombinedResult {
+
+    @Schema(description = "Data retrieved from the student service")
     private Object studentData;
+    
+    @Schema(description = "Port information from the details service")
     private String detailsPort;
 
     public CombinedResult() {
